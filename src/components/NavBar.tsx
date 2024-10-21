@@ -31,7 +31,7 @@ const NavBar = () => {
         <NavbarItem>
           <Link
             className="text-2xl font-semibold font-serif text-gray-500"
-            href="#"
+            href="/"
           >
             Home
           </Link>
@@ -55,8 +55,17 @@ const NavBar = () => {
       </NavbarContent>
 
       <NavbarContent justify="end">
-        <Button color="primary" radius="full" variant="shadow">
-          Sign up
+        <Button href="/login" radius="sm" variant="ghost" as={Link}>
+          Login
+        </Button>
+        <Button
+          href="/signin"
+          color="primary"
+          radius="sm"
+          variant="shadow"
+          as={Link}
+        >
+          Sign Up
         </Button>
       </NavbarContent>
     </Navbar>

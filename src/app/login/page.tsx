@@ -19,22 +19,24 @@ const page = () => {
         <Input
           type="email"
           label="Email"
-          variant="bordered"
+          variant="flat"
           placeholder="Enter your email"
           labelPlacement="outside"
           size="lg"
           radius="sm"
+          className="border border-gray-400 rounded-md"
         />
         <Input
           type="password"
           label="Password"
-          variant="bordered"
+          variant="flat"
           placeholder="Enter your passwords"
           labelPlacement="outside"
           size="lg"
           radius="sm"
+          className="border border-gray-400 rounded-md"
         />
-        <Button color="primary" radius="full" variant="shadow" size="lg">
+        <Button color="primary" radius="sm" variant="shadow">
           Login
         </Button>
       </form>
