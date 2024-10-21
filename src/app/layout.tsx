@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import { NextUIProvider } from "@nextui-org/react";
+import NavBar from "@/components/NavBar";
 
 export const metadata: Metadata = {
   title: "Social App",
@@ -16,7 +17,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <NextUIProvider>{children}</NextUIProvider>
+        <NextUIProvider>
+          <main className="max-w-7xl mx-auto">
+            <NavBar />
+            {children}
+          </main>
+        </NextUIProvider>
       </body>
     </html>
   );
