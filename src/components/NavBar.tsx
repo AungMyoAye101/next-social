@@ -15,13 +15,15 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
+  Image,
   Link,
 } from "@nextui-org/react";
 
 const NavBar = () => {
   return (
     <Navbar isBordered>
-      <NavbarBrand>
+      <NavbarBrand className="flex gap-2">
+        <Image src="/sociallogo.svg" alt="scoial logo" />
         <h1 className="font-bold text-3xl font-serif">Social</h1>
       </NavbarBrand>
 

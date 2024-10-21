@@ -1,7 +1,16 @@
 import React from "react";
+import PostContainer from "./PostContainer";
 
 const Hero = () => {
-  return <div className="min-h-screen">Hero</div>;
+  return (
+    <section>
+      <aside></aside>
+      <main>
+        <PostContainer />
+      </main>
+      <aside></aside>
+    </section>
+  );
 };
 
 export default Hero;
