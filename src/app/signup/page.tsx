@@ -28,10 +28,7 @@ const page = () => {
   return (
     <section className="max-w-xl mx-auto py-10 px-4">
       {" "}
-      <form
-        action=""
-        className="flex flex-col gap-4 border border-gray-300 rounded-lg shadow-md p-4 items-center"
-      >
+      <form className="flex flex-col gap-4 border border-gray-300 rounded-lg shadow-md p-4 items-center">
         <h1 className="text-xl md:text-2xl lg:text-3xl font-bold font-serif">
           SignIn
         </h1>
@@ -71,7 +68,13 @@ const page = () => {
           radius="sm"
           className="border border-gray-400 rounded-md"
         />
-        <Button color="primary" radius="sm" variant="shadow">
+        <Button
+          color="primary"
+          radius="sm"
+          variant="shadow"
+          type="submit"
+          onSubmit={handleSubmit}
+        >
           Sing In
         </Button>
       </form>

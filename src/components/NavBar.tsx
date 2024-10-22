@@ -59,7 +59,7 @@ const NavBar = () => {
           Login
         </Button>
         <Button
-          href="/signin"
+          href="/signup"
           color="primary"
           radius="sm"
           variant="shadow"
