@@ -1,7 +1,30 @@
+"use client";
+
 import { Button, Input } from "@nextui-org/react";
-import React from "react";
+import React, { useState } from "react";
+import { json } from "stream/consumers";
 
 const page = () => {
+  // const [user, setUser] = useState({
+  //   name: "",
+  //   email: "",
+  //   password: "",
+  // });
+  const [name, setName] = useState("");
+
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    try {
+      const res = await fetch("api/user/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <section className="max-w-xl mx-auto py-10 px-4">
       {" "}
@@ -19,11 +42,14 @@ const page = () => {
           type="name"
           label="Name"
           variant="flat"
+          name="name"
+          value={name}
           placeholder="Enter your name"
           labelPlacement="outside"
           size="lg"
           radius="sm"
           className="border border-gray-400 rounded-md"
+          onChange={(e) => setName(e.target.value)}
         />
         <Input
           type="email"
