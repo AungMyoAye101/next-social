@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <section className="flex gap-4 py-10 px-4">
+    <section className="flex gap-4 py-8 px-4">
       <aside className="hidden md:block w-[30%]">
         <AdsContainer />
       </aside>
