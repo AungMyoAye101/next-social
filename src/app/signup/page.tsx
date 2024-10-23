@@ -1,8 +1,8 @@
 "use client";
 
 import { Button, Input } from "@nextui-org/react";
+
 import React, { useState } from "react";
-import { json } from "stream/consumers";
 
 const page = () => {
   // const [user, setUser] = useState({
@@ -11,6 +11,8 @@ const page = () => {
   //   password: "",
   // });
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -18,7 +20,7 @@ const page = () => {
       const res = await fetch("api/user/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name }),
+        body: JSON.stringify({ name, email, password }),
       });
     } catch (error) {
       console.log(error);
@@ -50,16 +52,21 @@ const page = () => {
         />
         <Input
           type="email"
+          name="email"
           label="Email"
+          value={email}
           variant="flat"
           placeholder="Enter your email"
           labelPlacement="outside"
           size="lg"
           radius="sm"
           className="border border-gray-400 rounded-md"
+          onChange={(e) => setEmail(e.target.value)}
         />
         <Input
           type="password"
+          name="password"
+          value={password}
           label="Password"
           variant="flat"
           placeholder="Enter your passwords"
@@ -67,6 +74,7 @@ const page = () => {
           size="lg"
           radius="sm"
           className="border border-gray-400 rounded-md"
+          onChange={(e) => setPassword(e.target.value)}
         />
         <Button
           color="primary"
