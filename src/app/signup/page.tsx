@@ -5,18 +5,26 @@ import { Button, Input } from "@nextui-org/react";
 import React, { useState } from "react";
 
 const page = () => {
-  // const [user, setUser] = useState({
-  //   name: "",
-  //   email: "",
-  //   password: "",
-  // });
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [newUser, setNewUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setNewUser((pre) => ({
+      ...pre,
+      [name]: value,
+    }));
+    console.log(newUser);
+  };
 
   const handleSubmit = async () => {
+    const { name, email, password } = newUser;
     if (name.length < 3 && email.length < 0 && password.length < 6) {
-      alert("User Failed to create!");
+      console.log("Failed to create user");
       return;
     }
     try {
@@ -47,31 +55,31 @@ const page = () => {
           label="Name"
           variant="flat"
           name="name"
-          value={name}
+          value={newUser.name}
           placeholder="Enter your name"
           labelPlacement="outside"
           size="lg"
           radius="sm"
           className="border border-gray-400 rounded-md"
-          onChange={(e) => setName(e.target.value)}
+          onChange={handleChange}
         />
         <Input
           type="email"
           name="email"
           label="Email"
-          value={email}
+          value={newUser.email}
           variant="flat"
           placeholder="Enter your email"
           labelPlacement="outside"
           size="lg"
           radius="sm"
           className="border border-gray-400 rounded-md"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleChange}
         />
         <Input
           type="password"
           name="password"
-          value={password}
+          value={newUser.password}
           label="Password"
           variant="flat"
           placeholder="Enter your passwords"
@@ -79,7 +87,7 @@ const page = () => {
           size="lg"
           radius="sm"
           className="border border-gray-400 rounded-md"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handleChange}
         />
         <Button color="primary" radius="sm" variant="shadow" type="submit">
           Sing In
