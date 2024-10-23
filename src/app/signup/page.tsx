@@ -95,6 +95,7 @@ const page = () => {
         </Button>
       </form> */}
       <CreateForm
+        type={true}
         name={newUser.name}
         email={newUser.email}
         password={newUser.password}

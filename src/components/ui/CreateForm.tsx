@@ -3,6 +3,7 @@ import { Button, Input } from "@nextui-org/react";
 import React from "react";
 
 interface NewUserCreateProps {
+  type: Boolean;
   name?: string;
   email?: string;
   password?: string;
@@ -11,6 +12,7 @@ interface NewUserCreateProps {
 }
 
 const CreateForm = ({
+  type,
   name,
   email,
   password,
@@ -23,24 +25,27 @@ const CreateForm = ({
       className="flex flex-col gap-4 border border-gray-300 rounded-lg shadow-md p-4 items-center"
     >
       <h1 className="text-xl md:text-2xl lg:text-3xl font-bold font-serif">
-        SignIn
+        {type ? "Sing Up" : "Login"}
       </h1>
       <p className="text-base md:text-lg font-semibold font-serif">
-        Please signin your account
+        Please {type ? "Sing Up" : "Login"} your account
       </p>
-      <Input
-        type="name"
-        label="Name"
-        variant="flat"
-        name="name"
-        value={name}
-        placeholder="Enter your name"
-        labelPlacement="outside"
-        size="lg"
-        radius="sm"
-        className="border border-gray-400 rounded-md"
-        onChange={handleChange}
-      />
+      {type && (
+        <Input
+          type="name"
+          label="Name"
+          variant="flat"
+          name="name"
+          value={name}
+          placeholder="Enter your name"
+          labelPlacement="outside"
+          size="lg"
+          radius="sm"
+          className="border border-gray-400 rounded-md"
+          onChange={handleChange}
+        />
+      )}
+
       <Input
         type="email"
         name="email"
@@ -68,7 +73,7 @@ const CreateForm = ({
         onChange={handleChange}
       />
       <Button color="primary" radius="sm" variant="shadow" type="submit">
-        Sing In
+        {type ? "Sing Up" : "Login"}
       </Button>
     </form>
   );
