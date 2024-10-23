@@ -1,9 +1,17 @@
 import { NextResponse } from "next/server";
+import { connectDb } from "@/lib/db";
+import User from "@/model/user";
 
 export async function POST(req) {
+  const { name, email, password } = await req.json();
   try {
-    const { name, email, password } = await req.json();
-    console.log(name, email, password);
+    await connectDb();
+    const newUser = await User.create({
+      name,
+      email,
+      password,
+    });
+    await newUser.save();
     return NextResponse.json(
       { message: "new user successfully created" },
       { status: 201 }

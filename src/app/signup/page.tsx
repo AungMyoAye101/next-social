@@ -14,12 +14,14 @@ const page = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e: { preventDefault: () => void }) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    if (name.length < 3 && email.length < 0 && password.length < 6) {
+      alert("User Failed to create!");
+      return;
+    }
     try {
       const res = await fetch("api/user/signup", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),
       });
     } catch (error) {
@@ -30,7 +32,10 @@ const page = () => {
   return (
     <section className="max-w-xl mx-auto py-10 px-4">
       {" "}
-      <form className="flex flex-col gap-4 border border-gray-300 rounded-lg shadow-md p-4 items-center">
+      <form
+        action={handleSubmit}
+        className="flex flex-col gap-4 border border-gray-300 rounded-lg shadow-md p-4 items-center"
+      >
         <h1 className="text-xl md:text-2xl lg:text-3xl font-bold font-serif">
           SignIn
         </h1>
@@ -76,13 +81,7 @@ const page = () => {
           className="border border-gray-400 rounded-md"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button
-          color="primary"
-          radius="sm"
-          variant="shadow"
-          type="submit"
-          onSubmit={handleSubmit}
-        >
+        <Button color="primary" radius="sm" variant="shadow" type="submit">
           Sing In
         </Button>
       </form>
