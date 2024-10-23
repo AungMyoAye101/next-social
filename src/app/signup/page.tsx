@@ -1,5 +1,6 @@
 "use client";
 
+import CreateForm from "@/components/ui/CreateForm";
 import { Button, Input } from "@nextui-org/react";
 
 import React, { useState } from "react";
@@ -40,7 +41,7 @@ const page = () => {
   return (
     <section className="max-w-xl mx-auto py-10 px-4">
       {" "}
-      <form
+      {/* <form
         action={handleSubmit}
         className="flex flex-col gap-4 border border-gray-300 rounded-lg shadow-md p-4 items-center"
       >
@@ -92,7 +93,14 @@ const page = () => {
         <Button color="primary" radius="sm" variant="shadow" type="submit">
           Sing In
         </Button>
-      </form>
+      </form> */}
+      <CreateForm
+        name={newUser.name}
+        email={newUser.email}
+        password={newUser.password}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
     </section>
   );
 };
