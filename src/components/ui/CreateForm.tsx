@@ -1,6 +1,7 @@
 import { Button, Input } from "@nextui-org/react";
+import { div } from "framer-motion/client";
 
-import React from "react";
+import React, { useState } from "react";
 
 interface NewUserCreateProps {
   type: Boolean;
@@ -8,7 +9,9 @@ interface NewUserCreateProps {
   email?: string;
   password?: string;
   handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit?: () => void;
+  handleSubmit?: (e: any) => void;
+  errorMessage?: string;
+  error?: boolean;
 }
 
 const CreateForm = ({
@@ -18,6 +21,8 @@ const CreateForm = ({
   password,
   handleChange,
   handleSubmit,
+  errorMessage,
+  error,
 }: NewUserCreateProps) => {
   return (
     <form
@@ -72,6 +77,8 @@ const CreateForm = ({
         className="border border-gray-400 rounded-md"
         onChange={handleChange}
       />
+      {error && <div>{errorMessage}</div>}
+
       <Button color="primary" radius="sm" variant="shadow" type="submit">
         {type ? "Sing Up" : "Login"}
       </Button>

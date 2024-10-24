@@ -27,7 +27,6 @@ const page = () => {
 
   return (
     <section className="max-w-xl mx-auto py-10 px-4">
-      {" "}
       <CreateForm
         type={false}
         email={user.email}
