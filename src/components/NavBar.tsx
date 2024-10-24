@@ -21,8 +21,8 @@ import {
 
 const NavBar = () => {
   return (
-    <Navbar isBordered className="bg-neutral-50">
-      <NavbarBrand className="flex gap-2 px-4">
+    <Navbar isBordered className="bg-neutral-50" maxWidth="full">
+      <NavbarBrand className="flex gap-2 ">
         <Image src="/sociallogo.svg" alt="scoial logo" />
         <h1 className="font-bold text-3xl font-serif">Social</h1>
       </NavbarBrand>
