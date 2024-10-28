@@ -1,14 +1,7 @@
-import { signIn } from "@/auth";
+import React from "react";
 
-export function SignIn() {
-  return (
-    <form
-      action={async () => {
-        "use server";
-        await signIn();
-      }}
-    >
-      <button type="submit">Sign In</button>
-    </form>
-  );
-}
+const signin = () => {
+  return <div>signin</div>;
+};
+
+export default signin;
