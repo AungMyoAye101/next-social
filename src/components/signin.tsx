@@ -1,21 +1,28 @@
+import { submitHandler } from "@/actions/action";
 import React from "react";
 
 const Signin = () => {
   return (
-    <form className="max-w-80 flex flex-col gap-4 mx-auto mt-10 p-4 shadow-md rounded-md border border-gray-300">
+    <form
+      action={submitHandler}
+      className="max-w-80 flex flex-col gap-4 mx-auto mt-10 p-4 shadow-md rounded-md border border-gray-300"
+    >
       <h1>Sign in Form</h1>
       <input
         type="text"
+        name="name"
         placeholder="name"
         className="border border-gray-300 rounded-lg shadow-md px-2 py-1"
       />
       <input
         type="email"
+        name="email"
         placeholder="email"
         className="border border-gray-300 rounded-lg shadow-md px-2 py-1"
       />
       <input
         type="password"
+        name="password"
         placeholder="password"
         className="border border-gray-300 rounded-lg shadow-md px-2 py-1"
       />
