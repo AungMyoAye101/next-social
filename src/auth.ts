@@ -7,14 +7,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Credentials({
       credentials: {
-        name: {},
-        email: {},
-        password: {},
+        name: { label: "Name", type: "text", placeholder: "Enter Your Name" },
+        email: { label: "Email", type: "email", placeholder: "jhon@gmail.com" },
+        password: {
+          label: "Password",
+          type: "password",
+          placeholder: "Enter your password",
+        },
       },
       authorize: async (credentials: any) => {
         connectToDb();
         let user = credentials;
-        // user = await User.findOne({ email: credentials.email });
 
         console.log(user);
 
@@ -22,4 +25,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
+  session: {
+    strategy: "jwt",
+  },
 });
