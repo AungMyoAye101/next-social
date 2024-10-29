@@ -1,41 +1,37 @@
+import { submitHandler } from "@/actions/action";
 import Signin from "@/components/signin";
 import { connectToDb } from "@/lib/connectToDb";
 import User from "@/lib/model/User";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
 
-const page = async () => {
-  const [data, setData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
-  const router = useRouter();
-
-  const changeHandler = (e: any) => {
-    const { name, value } = e.target;
-    setData({ ...data, [name]: value });
-    console.log(data);
-  };
-
-  const submitHandler = async (e: any) => {
-    e.preventDefault();
-
-    const res = await fetch("/api/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    const newUser = await res.json();
-    console.log(newUser);
-  };
-
+const page = () => {
   return (
-    <div>
-      <Signin changeHandler={changeHandler} submitHandler={submitHandler} />
-    </div>
+    <form
+      action={submitHandler}
+      className="max-w-80 flex flex-col gap-4 mx-auto mt-10 p-4 shadow-md rounded-md border border-gray-300"
+    >
+      <h1>Sign in Form</h1>
+      <input
+        type="text"
+        name="name"
+        placeholder="name"
+        className="border border-gray-300 rounded-lg shadow-md px-2 py-1"
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="email"
+        className="border border-gray-300 rounded-lg shadow-md px-2 py-1"
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="password"
+        className="border border-gray-300 rounded-lg shadow-md px-2 py-1"
+      />
+      <button type="submit" className="bg-blue-400 rounded-md px-4 py-1">
+        Sign Up
+      </button>
+    </form>
   );
 };
 

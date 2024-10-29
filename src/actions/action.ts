@@ -20,3 +20,20 @@
 //     console.log(error);
 //   }
 // };
+
+export const submitHandler = async (data: FormData) => {
+  "use server";
+  const name = data.get("name") as string;
+  const email = data.get("email") as string;
+  const password = data.get("password") as string;
+  const user = { name, email, password };
+  const res = await fetch("/api/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
+  const newUser = await res.json();
+  console.log(newUser);
+};
