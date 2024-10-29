@@ -1,7 +1,9 @@
-import { submitHandler } from "@/actions/action";
 import React from "react";
-
-const Signin = () => {
+interface HandlerProps {
+  changeHandler: (e: any) => void;
+  submitHandler: (e: any) => void;
+}
+const Signin = ({ changeHandler, submitHandler }: HandlerProps) => {
   return (
     <form
       action={submitHandler}
@@ -13,20 +15,25 @@ const Signin = () => {
         name="name"
         placeholder="name"
         className="border border-gray-300 rounded-lg shadow-md px-2 py-1"
+        onChange={changeHandler}
       />
       <input
         type="email"
         name="email"
         placeholder="email"
         className="border border-gray-300 rounded-lg shadow-md px-2 py-1"
+        onChange={changeHandler}
       />
       <input
         type="password"
         name="password"
         placeholder="password"
         className="border border-gray-300 rounded-lg shadow-md px-2 py-1"
+        onChange={changeHandler}
       />
-      <button className="bg-blue-400 rounded-md px-4 py-1">Sign Up</button>
+      <button type="submit" className="bg-blue-400 rounded-md px-4 py-1">
+        Sign Up
+      </button>
     </form>
   );
 };
