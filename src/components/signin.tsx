@@ -20,7 +20,7 @@ const Signin = () => {
         body: JSON.stringify({ name, email, password }),
       });
       if (res.ok) {
-        router.push("/");
+        router.push("/login");
       }
     } catch (error) {
       console.log(error);

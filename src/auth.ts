@@ -1,7 +1,9 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { connectToDb } from "./lib/connectToDb";
-import User from "@/lib/model/User";
+
+import bcrypt from "bcryptjs";
+import { User } from "./lib/model/User";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -16,12 +18,28 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         },
       },
       authorize: async (credentials: any) => {
-        connectToDb();
-        let user = credentials;
+        if (!credentials) return;
 
-        console.log(user);
+        try {
+          await connectToDb();
+          const newuser = await User.findOne({ email: credentials.email });
+          console.log(newuser);
+          if (newuser) {
+            const isMatch = await bcrypt.compare(
+              credentials.password,
+              newuser.password
+            );
 
-        return user;
+            if (isMatch) {
+              return newuser;
+            } else {
+              throw new Error("User not found.");
+            }
+          }
+        } catch (err) {
+          console.log("hey error");
+          throw new Error("Unable to login ");
+        }
       },
     }),
   ],

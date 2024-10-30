@@ -1,6 +1,6 @@
 "use server";
 
-import User from "@/lib/model/User";
+import { User } from "@/lib/model/User";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { connectToDb } from "@/lib/connectToDb";
