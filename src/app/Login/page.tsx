@@ -5,12 +5,20 @@ import { useRouter } from "next/navigation";
 import React from "react";
 
 const page = () => {
+  const router = useRouter();
   const submitHandler: any = async (data: FormData) => {
     const email = data.get("email") as string;
     const password = data.get("password") as string;
 
     try {
-      const res = await signIn("credentials", { email, password });
+      const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      router.push("/");
+
       return res;
     } catch (error) {
       console.log(error);

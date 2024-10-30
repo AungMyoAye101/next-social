@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import SignOut from "@/components/SignOut";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
@@ -15,7 +16,7 @@ export default async function Home() {
             {session.user.name} and {session.user.email}
           </p>
 
-          <button>SignOut</button>
+          <SignOut />
         </div>
       )}
       <div className="flex gap-4">
