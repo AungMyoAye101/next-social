@@ -1,23 +1,32 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import React from "react";
 
-export const submitHandler = async (data: FormData) => {
-  "use server";
-  const name = data.get("name") as string;
-  const email = data.get("email") as string;
-  const password = data.get("password") as string;
-  const user = { name, email, password };
-  const res = await fetch("/api/signup", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(user),
-  });
-  const newUser = await res.json();
-  console.log(newUser);
-};
-
 const Signin = () => {
+  const router = useRouter();
+
+  const submitHandler = async (data: FormData) => {
+    const name = data.get("name") as string;
+    const email = data.get("email") as string;
+    const password = data.get("password") as string;
+
+    try {
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password }),
+      });
+      if (res.ok) {
+        router.push("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <form
       action={submitHandler}
