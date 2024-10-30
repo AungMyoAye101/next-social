@@ -1,9 +1,26 @@
+"use client";
+
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const page = () => {
+  const submitHandler: any = async (data: FormData) => {
+    const email = data.get("email") as string;
+    const password = data.get("password") as string;
+
+    try {
+      const res = await signIn("credentials", { email, password });
+      return res;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+
   return (
     <form
-      action={""}
+      action={submitHandler}
       className="max-w-80 flex flex-col gap-4 mx-auto mt-10 p-4 shadow-md rounded-md border border-gray-300"
     >
       <h1>Login in Form</h1>
