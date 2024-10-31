@@ -14,7 +14,7 @@ export default function Post() {
   const [isFollowed, setIsFollowed] = React.useState(false);
 
   return (
-    <Card className="w-full">
+    <Card radius="md" shadow="lg">
       <CardHeader className="justify-between">
         <div className="flex gap-5">
           <Avatar
@@ -24,10 +24,10 @@ export default function Post() {
             src="https://nextui.org/avatars/avatar-1.png"
           />
           <div className="flex flex-col gap-1 items-start justify-center">
-            <h4 className="text-small font-semibold leading-none text-default-600">
+            <h4 className="text-md font-semibold leading-none text-default-600">
               Zoey Lang
             </h4>
-            <h5 className="text-small tracking-tight text-default-400">
+            <h5 className="text-sm tracking-tight text-default-400">
               @zoeylang
             </h5>
           </div>
@@ -47,7 +47,7 @@ export default function Post() {
           {isFollowed ? "Unfollow" : "Follow"}
         </Button>
       </CardHeader>
-      <CardBody className="px-3 py-0 text-small text-default-400">
+      <CardBody className="px-3 py-0  ">
         <p>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse
           perspiciatis dignissimos repudiandae placeat soluta commodi delectus

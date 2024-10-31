@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import NavBar from "@/components/NavBar";
+import { Providers } from "./Provider";
 
 export const metadata: Metadata = {
   title: "Social App",
@@ -16,10 +17,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className="max-w-6xl mx-auto">
-          <NavBar />
-          {children}
-        </main>
+        <Providers>
+          <main className="max-w-6xl mx-auto">
+            <NavBar />
+            {children}
+          </main>
+        </Providers>
       </body>
     </html>
   );

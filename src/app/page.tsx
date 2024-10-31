@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <section className="flex w-full gap-4">
-      <div className="w-[25%]">
+      <div className="w-[25%]  flex flex-col gap-6">
         <Ads />
         <Ads />
       </div>
@@ -19,7 +19,7 @@ export default function Home() {
         <Post />
         <Post />
       </main>
-      <div className="w-[25%]">
+      <div className="w-[25%] flex flex-col gap-6">
         <Ads />
         <Ads />
       </div>
