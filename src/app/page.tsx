@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import Ads from "@/components/Ads";
 import Post from "@/components/Post";
 import SignOut from "@/components/SignOut";
 import { useSession } from "next-auth/react";
@@ -6,8 +7,11 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <section className="flex w-full">
-      <div className="w-[25%]"></div>
+    <section className="flex w-full gap-4">
+      <div className="w-[25%]">
+        <Ads />
+        <Ads />
+      </div>
 
       <main className=" w-full md:w-[45%] flex flex-col gap-4">
         <Post />
@@ -15,7 +19,10 @@ export default function Home() {
         <Post />
         <Post />
       </main>
-      <div className="w-[25%]"></div>
+      <div className="w-[25%]">
+        <Ads />
+        <Ads />
+      </div>
     </section>
   );
 }
