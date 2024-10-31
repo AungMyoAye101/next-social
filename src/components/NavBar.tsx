@@ -1,62 +1,76 @@
+"use client";
+
 import { auth } from "@/auth";
-import Link from "next/link";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  Link,
+  Button,
+} from "@nextui-org/react";
+import { useSession } from "next-auth/react";
 
-const NavBar = async () => {
-  const session = await auth();
+export default function Nav() {
+  const { data: session } = useSession();
 
+  console.log(session?.user);
   return (
-    <nav className="flex justify-between items-center px-4 md:px-8 border-b border-b-gray-100 py-2 sticky top-0 left-0 right-0">
-      <div>
-        <Link href={"/"} className="text-2xl md:text-3xl font-bold font-serif">
-          Socail
-        </Link>
-      </div>
-      <div className="text-2xl font-semibold font-serif">
-        <Link href="/" className="px-4 py-2 rounded hover:bg-blue-400">
-          Home
-        </Link>
-        <Link href="/" className="px-4 py-2 rounded hover:bg-blue-400">
-          About
-        </Link>
-        <Link href="/" className="px-4 py-2 rounded hover:bg-blue-400">
-          Friend
-        </Link>
-        <Link href="/" className="px-4 py-2 rounded hover:bg-blue-400">
-          Setting
-        </Link>
-      </div>
-
-      <div className="flex items-center gap-2">
+    <Navbar position="sticky" isBlurred isBordered maxWidth="xl">
+      <NavbarBrand>
+        <p className="font-bold text-inherit">ACME</p>
+      </NavbarBrand>
+      <NavbarContent className="hidden sm:flex " justify="center">
+        <NavbarItem>
+          <Link
+            color="foreground"
+            href="#"
+            className="text-2xl px-4 py-2 hover:bg-blue-500 rounded"
+          >
+            Feed
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link
+            color="foreground"
+            href="#"
+            className="text-2xl px-4 py-2 hover:bg-blue-500 rounded"
+          >
+            Friends
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link
+            color="foreground"
+            href="#"
+            className="text-2xl px-4 py-2 hover:bg-blue-500 rounded"
+          >
+            Profile
+          </Link>
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarContent justify="end">
         {session?.user ? (
           <>
-            <Link
-              href={"/"}
-              className="px-4 py-2 rounded-full shadow-sm bg-blue-400 text-neutral-50"
-            >
-              Sign Out
-            </Link>
-            <div className="size-10 bg-blue-400 rounded-full"></div>
+            <NavbarItem className="hidden lg:flex gap-2">
+              <Link href="#">Log out</Link>
+              <div className="size-10 rounded-full border border-blue-500"></div>
+            </NavbarItem>
           </>
         ) : (
           <>
             {" "}
-            <Link
-              href={"/signup"}
-              className="px-4 py-2 rounded-full shadow-sm bg-blue-400 text-neutral-50"
-            >
-              Sign up
-            </Link>
-            <Link
-              href={"/login"}
-              className="px-4 py-2 rounded-full shadow-sm bg-blue-400 text-neutral-50"
-            >
-              Login
-            </Link>
+            <NavbarItem className="hidden lg:flex">
+              <Link href="/login">Login</Link>
+            </NavbarItem>
+            <NavbarItem>
+              <Button as={Link} color="primary" variant="solid" href="/signup">
+                Sign Up
+              </Button>
+            </NavbarItem>
           </>
         )}
-      </div>
-    </nav>
+      </NavbarContent>
+    </Navbar>
   );
-};
-
-export default NavBar;
+}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
-import NavBar from "@/components/NavBar";
+import Nav from "@/components/NavBar";
 import { Providers } from "./Provider";
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <main className="max-w-6xl mx-auto">
-            <NavBar />
+            <Nav />
             {children}
           </main>
         </Providers>
