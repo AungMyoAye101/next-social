@@ -10,9 +10,13 @@ import {
   Button,
 } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
+import ProfileMenu from "./ProfileMenu";
 
 export default function Nav() {
   const { data: session } = useSession();
+
+  const [profileToggle, setProfileToggle] = useState(false);
 
   console.log(session?.user);
   return (
@@ -48,13 +52,26 @@ export default function Nav() {
             Profile
           </Link>
         </NavbarItem>
+        <NavbarItem>
+          <Link
+            color="foreground"
+            href="#"
+            className="text-2xl px-4 py-2 hover:bg-blue-500 rounded"
+          >
+            About
+          </Link>
+        </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
         {session?.user ? (
           <>
-            <NavbarItem className="hidden lg:flex gap-2">
-              <Link href="#">Log out</Link>
-              <div className="size-10 rounded-full border border-blue-500"></div>
+            <NavbarItem className="hidden lg:flex gap-2 relative">
+              <div
+                className="size-10 rounded-full border border-blue-500 cursor-pointer"
+                onClick={() => setProfileToggle((pre) => !pre)}
+              ></div>
+
+              {profileToggle && <ProfileMenu />}
             </NavbarItem>
           </>
         ) : (
