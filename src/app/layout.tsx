@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <main className="max-w-6xl mx-auto">
+          <main className="max-w-7xl mx-auto">
             <Nav />
             {children}
           </main>
