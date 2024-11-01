@@ -14,7 +14,7 @@ export default function Post() {
   const [isFollowed, setIsFollowed] = React.useState(false);
 
   return (
-    <Card radius="md" shadow="lg" className="w-full sm:w-2xl md:w-full">
+    <Card radius="md" shadow="lg" className="h-60">
       <CardHeader className="justify-between">
         <div className="flex gap-5">
           <Avatar
@@ -47,7 +47,7 @@ export default function Post() {
           {isFollowed ? "Unfollow" : "Follow"}
         </Button>
       </CardHeader>
-      <CardBody className="px-3 py-0  ">
+      <CardBody>
         <p>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse
           perspiciatis dignissimos repudiandae placeat soluta commodi delectus
@@ -55,6 +55,7 @@ export default function Post() {
           asperiores ipsum. Minima qui excepturi iusto!
         </p>
       </CardBody>
+
       <CardFooter className="gap-3">
         <div className="flex gap-1">
           <p className="font-semibold text-default-400 text-small">4</p>
