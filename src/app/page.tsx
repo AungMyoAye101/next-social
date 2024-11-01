@@ -8,18 +8,17 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <section className="flex w-full gap-6 py-8">
-      <div className="w-[30%]  flex flex-col gap-6">
+    <section className="relative max-w-7xl mx-auto flex gap-4 justify-center py-4 bg-blue-400">
+      <div className="w-[30%]  md:flex flex-col gap-6 fixed left-0  top-20 hidden ">
         <SideMenu />
       </div>
-
-      <main className=" w-full md:w-[40%] flex flex-col gap-4">
+      <main className=" w-full md:w-[45%] flex flex-col  gap-4   px-4 ">
         <Post />
         <Post />
         <Post />
         <Post />
       </main>
-      <div className="w-[25%] flex flex-col gap-6">
+      <div className="w-[25%] md:flex flex-col gap-6 fixed top-20 hidden  right-0">
         <Ads />
         <Ads />
       </div>

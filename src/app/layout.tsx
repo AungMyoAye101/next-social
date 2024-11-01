@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Nav from "@/components/NavBar";
 import { Providers } from "./Provider";
+import SideMenu from "@/components/SideMenu";
+import Ads from "@/components/Ads";
 
 export const metadata: Metadata = {
   title: "Social App",
