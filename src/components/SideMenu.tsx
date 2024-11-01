@@ -1,5 +1,6 @@
 "use client";
 
+import { getUser } from "@/actions/action";
 import { Avatar } from "@nextui-org/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -41,6 +42,7 @@ const SideMenu = () => {
         <IoMdLogOut className="text-2xl " />
         <p className=" font-semibold ">Log out</p>
       </Link>
+      <button onClick={getUser}>click</button>
     </section>
   );
 };

@@ -18,11 +18,10 @@ export default function Nav() {
 
   const [profileToggle, setProfileToggle] = useState(false);
 
-  console.log(session?.user);
   return (
     <Navbar position="sticky" isBlurred isBordered maxWidth="xl">
       <NavbarBrand>
-        <p className="font-bold text-inherit">ACME</p>
+        <p className="font-bold text-3xl font-serif">Socail</p>
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex " justify="center">
         <NavbarItem>
@@ -68,7 +67,9 @@ export default function Nav() {
             <NavbarItem className="hidden lg:flex gap-2 relative">
               <div
                 className="size-10 rounded-full border border-blue-500 cursor-pointer"
-                onClick={() => setProfileToggle((pre) => !pre)}
+                onClick={() => {
+                  setProfileToggle((pre) => !pre);
+                }}
               ></div>
 
               {profileToggle && <ProfileMenu />}

@@ -14,7 +14,7 @@ export default function Post() {
   const [isFollowed, setIsFollowed] = React.useState(false);
 
   return (
-    <Card radius="md" shadow="lg" className="h-60">
+    <Card radius="md" shadow="lg" className="min-h-60">
       <CardHeader className="justify-between">
         <div className="flex gap-5">
           <Avatar
