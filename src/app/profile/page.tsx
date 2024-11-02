@@ -1,3 +1,5 @@
+import Post from "@/components/Post";
+import PostCon from "@/components/PostCon";
 import UploadPost from "@/components/UploadPost";
 import React from "react";
 
@@ -19,6 +21,10 @@ const Profile = () => {
 
       <div>
         <UploadPost />
+      </div>
+      <div className="space-y-4">
+        <h1 className="text-2xl font-bold">Posts</h1>
+        <PostCon />
       </div>
     </section>
   );
