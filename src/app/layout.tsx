@@ -22,7 +22,19 @@ export default function RootLayout({
         <Providers>
           <main className="max-w-7xl mx-auto">
             <Nav />
-            {children}
+            <section className="relative  flex gap-4 justify-center py-4 ">
+              <div className="hidden w-[25%] md:block">
+                <SideMenu />
+              </div>
+
+              <main className="w-full md:w-[45%] flex flex-col h-screen gap-4  px-6 overflow-hidden overflow-y-scroll">
+                {children}
+              </main>
+              <div className="hidden w-[25%] md:flex flex-col gap-4 ">
+                <Ads />
+                <Ads />
+              </div>
+            </section>
           </main>
         </Providers>
       </body>

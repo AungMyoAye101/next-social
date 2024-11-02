@@ -1,7 +1,6 @@
-import { signOut } from "@/auth";
-import { useSession } from "next-auth/react";
+"use client";
+import { signOut, useSession } from "next-auth/react";
 import React from "react";
-import SignOut from "./SignOut";
 
 const ProfileMenu = () => {
   const { data: session } = useSession();
@@ -11,8 +10,11 @@ const ProfileMenu = () => {
       <div className="px-4 py-2 rounded shadow-md">{session?.user?.email}</div>
       <div className="px-4 py-2 rounded shadow-md">Dark Mode</div>
       <div className="px-4 py-2 rounded shadow-md">Update Profile</div>
-      <div className="px-4 py-2 rounded shadow-md text-red-400 cursor-pointer">
-        <SignOut />
+      <div
+        className="px-4 py-2 rounded shadow-md text-red-400 cursor-pointer"
+        onClick={() => signOut()}
+      >
+        Log Out
       </div>
     </section>
   );

@@ -6,12 +6,13 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Link,
   Button,
 } from "@nextui-org/react";
+
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import ProfileMenu from "./ProfileMenu";
+import Link from "next/link";
 
 export default function Nav() {
   const { data: session } = useSession();
@@ -27,7 +28,7 @@ export default function Nav() {
         <NavbarItem>
           <Link
             color="foreground"
-            href="#"
+            href="/"
             className="text-2xl px-4 py-2 hover:bg-blue-500 rounded"
           >
             Feed
@@ -45,7 +46,7 @@ export default function Nav() {
         <NavbarItem>
           <Link
             color="foreground"
-            href="#"
+            href="/profile"
             className="text-2xl px-4 py-2 hover:bg-blue-500 rounded"
           >
             Profile

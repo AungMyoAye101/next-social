@@ -1,11 +1,11 @@
 "use client";
 
-import { getUser } from "@/actions/action";
 import { Avatar } from "@nextui-org/react";
+import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { FaFreebsd, FaMoon, FaPager } from "react-icons/fa";
+import { FaMoon, FaPager } from "react-icons/fa";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { IoMdLogOut } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
@@ -38,11 +38,10 @@ const SideMenu = () => {
         <FaPager className="text-2xl" />
         <p className=" font-semibold ">Feed</p>
       </Link>
-      <Link href={"/"} className="side-menu">
+      <Link href={"/"} className="side-menu" onClick={() => signOut()}>
         <IoMdLogOut className="text-2xl " />
         <p className=" font-semibold ">Log out</p>
       </Link>
-      <button onClick={getUser}>click</button>
     </section>
   );
 };

@@ -9,19 +9,9 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <section className="relative  flex gap-4 justify-center py-4 ">
-      <div className="hidden w-[25%] md:block">
-        <SideMenu />
-      </div>
-
-      <main className="w-full md:w-[45%] flex flex-col h-screen gap-4  px-6 overflow-hidden overflow-y-scroll">
-        <PostCon />
-      </main>
-      <div className="hidden w-[25%] md:flex flex-col">
-        <Ads />
-        <Ads />
-      </div>
-    </section>
+    <>
+      <PostCon />
+    </>
   );
 }
 {
