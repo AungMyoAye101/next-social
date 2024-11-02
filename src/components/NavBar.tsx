@@ -37,7 +37,7 @@ export default function Nav() {
         <NavbarItem>
           <Link
             color="foreground"
-            href="#"
+            href="/friend"
             className="text-2xl px-4 py-2 hover:bg-blue-500 rounded"
           >
             Friends
