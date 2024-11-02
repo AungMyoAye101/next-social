@@ -1,3 +1,4 @@
+import UploadPost from "@/components/UploadPost";
 import React from "react";
 
 const Profile = () => {
@@ -14,6 +15,10 @@ const Profile = () => {
         <div className="flex items-center justify-center gap-1 text-base text-gray-400">
           <span>69 Followers</span> .<span>69 Following</span>
         </div>
+      </div>
+
+      <div>
+        <UploadPost />
       </div>
     </section>
   );
