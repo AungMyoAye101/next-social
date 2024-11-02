@@ -1,19 +1,27 @@
+"use client";
+
+import { Button, Input } from "@nextui-org/react";
 import React from "react";
+import { FaImage } from "react-icons/fa6";
 
 const UploadPost = () => {
   return (
-    <section>
+    <section className="p-4 rounde-md shadow-md border">
       <main className="flex gap-2">
         <div className="size-10 bg-purple-400 rounded-full"></div>
-        <form action="#" className="flex flex-col gap-2 bg-green-100  flex-1 ">
-          <input
-            type="text"
-            placeholder="Whats on your mind."
-            className="px-2 py-2 rounded-full border  "
-          />
-          <button className="bg-blue-400 px-4 py-1 rounded-full self-end">
-            Post
-          </button>
+        <form action="#" className="flex flex-col gap-2  flex-1 ">
+          <Input type="text" placeholder="Whats on your mind." radius="lg" />
+          <div className="flex gap-2 self-end">
+            <Button
+              isIconOnly
+              color="primary"
+              variant="faded"
+              aria-label="Upload a photo"
+            >
+              <FaImage />
+            </Button>
+            <Button color="primary">Upload</Button>
+          </div>
         </form>
       </main>
     </section>
