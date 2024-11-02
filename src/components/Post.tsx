@@ -9,6 +9,9 @@ import {
   Avatar,
   Button,
 } from "@nextui-org/react";
+import { FaRegComment, FaRegThumbsUp, FaThumbsUp } from "react-icons/fa";
+
+import { PiShareFatThin } from "react-icons/pi";
 
 export default function Post() {
   const [isFollowed, setIsFollowed] = React.useState(false);
@@ -57,13 +60,31 @@ export default function Post() {
       </CardBody>
 
       <CardFooter className="gap-3">
-        <div className="flex gap-1">
-          <p className="font-semibold text-default-400 text-small">4</p>
-          <p className=" text-default-400 text-small">Following</p>
-        </div>
-        <div className="flex gap-1">
-          <p className="font-semibold text-default-400 text-small">97.1K</p>
-          <p className="text-default-400 text-small">Followers</p>
+        <div className="flex w-full">
+          <Button
+            radius="sm"
+            fullWidth={true}
+            variant="light"
+            startContent={<FaRegThumbsUp className="text-xl" />}
+          >
+            Like
+          </Button>
+          <Button
+            radius="sm"
+            fullWidth={true}
+            variant="light"
+            startContent={<FaRegComment className="text-xl" />}
+          >
+            Comment
+          </Button>
+          <Button
+            radius="sm"
+            fullWidth={true}
+            variant="light"
+            startContent={<PiShareFatThin className="text-xl" />}
+          >
+            Share
+          </Button>
         </div>
       </CardFooter>
     </Card>
