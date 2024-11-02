@@ -66,14 +66,7 @@ export default function Nav() {
         {session?.user ? (
           <>
             <NavbarItem className="hidden lg:flex gap-2 relative">
-              <div
-                className="size-10 rounded-full border border-blue-500 cursor-pointer"
-                onClick={() => {
-                  setProfileToggle((pre) => !pre);
-                }}
-              ></div>
-
-              {profileToggle && <ProfileMenu />}
+              <ProfileMenu />
             </NavbarItem>
           </>
         ) : (
