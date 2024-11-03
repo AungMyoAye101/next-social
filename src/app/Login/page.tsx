@@ -1,41 +1,45 @@
 "use client";
 
+import { initialState } from "@/components/Signup";
 import { Input, Button } from "@nextui-org/react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
-import React from "react";
+import React, { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
+const submitHandler: any = async (
+  prevState: { message: string },
+  data: FormData
+) => {
+  const email = data.get("email") as string;
+  const password = data.get("password") as string;
+
+  try {
+    const res = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+
+    return res;
+  } catch (error) {
+    console.log(error);
+
+    return { message: "Failed to login." };
+  }
+};
 const page = () => {
-  const { pending } = useFormStatus();
-  const router = useRouter();
-  const submitHandler: any = async (data: FormData) => {
-    const email = data.get("email") as string;
-    const password = data.get("password") as string;
-
-    try {
-      const res = await signIn("credentials", {
-        email,
-        password,
-        redirect: false,
-      });
-
-      router.push("/");
-
-      return res;
-    } catch (error) {
-      console.log(error);
-      throw error;
-    }
-  };
+  const [state, action, isPending] = useActionState(
+    submitHandler,
+    initialState
+  );
 
   return (
     <section>
       {" "}
       <form
-        action={submitHandler}
+        action={action}
         className=" flex flex-col gap-4 mx-auto  px-6 py-8  shadow-md rounded-md border border-gray-300"
       >
         <h1 className="text-2xl font-bold font-serif text-center mb-2">
@@ -61,8 +65,9 @@ const page = () => {
           placeholder="Enter your password"
           labelPlacement="outside"
         />
+        {state.message && <p>{state.message}</p>}
 
-        <Button color="primary" type="submit" radius="sm" isLoading={pending}>
+        <Button color="primary" type="submit" radius="sm" isLoading={isPending}>
           Login
         </Button>
         <Link

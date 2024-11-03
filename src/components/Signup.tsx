@@ -7,11 +7,7 @@ import { useRouter } from "next/navigation";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
-interface FormState {
-  message: string;
-}
-
-const initialState = {
+export const initialState = {
   message: "",
 };
 const Signin = () => {

@@ -5,6 +5,8 @@ import { connectToDb } from "@/lib/connectToDb";
 import { User } from "@/lib/model/User";
 import { useSession } from "next-auth/react";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -38,6 +40,8 @@ export const createUser = async (preState, data) => {
       }),
     });
     revalidatePath("/");
+    redirect("/");
+
     return { message: "Created user" };
   } catch (error) {
     console.log(error);
