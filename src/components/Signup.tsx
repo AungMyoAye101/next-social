@@ -4,14 +4,17 @@ import { createUser } from "./actions/action";
 import { Button, Input } from "@nextui-org/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { useFormStatus } from "react-dom";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa6";
 
 export const initialState = {
   message: "",
 };
 const Signin = () => {
   const [state, action, isPending] = useActionState(createUser, initialState);
+  const [show, setShow] = useState(false);
 
   return (
     <form
@@ -41,13 +44,26 @@ const Signin = () => {
       />
 
       <Input
-        type="password"
+        type={show ? "text" : "password"}
         label="Password"
         name="password"
         radius="sm"
         variant="faded"
         placeholder="Enter your password"
         labelPlacement="outside"
+        endContent={
+          show ? (
+            <FaEye
+              className="relative z-10 cursor-pointer text-xl"
+              onClick={() => setShow((pre) => !pre)}
+            />
+          ) : (
+            <FaEyeSlash
+              className="relative z-10 cursor-pointer text-xl"
+              onClick={() => setShow((pre) => !pre)}
+            />
+          )
+        }
       />
       {state?.message && <p className="text-rose-400">{state.message}</p>}
       <Button color="primary" type="submit" radius="sm" isLoading={isPending}>
