@@ -1,40 +1,25 @@
 "use client";
 
+import { createUser } from "./actions/action";
 import { Button, Input } from "@nextui-org/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
+import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
-import { FaEnvelope, FaEye } from "react-icons/fa6";
 
+interface FormState {
+  message: string;
+}
+
+const initialState = {
+  message: "",
+};
 const Signin = () => {
-  const router = useRouter();
-  const { pending } = useFormStatus();
-
-  const submitHandler = async (data: FormData) => {
-    const name = data.get("name") as string;
-    const email = data.get("email") as string;
-    const password = data.get("password") as string;
-
-    try {
-      const res = await fetch("/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email, password }),
-      });
-      if (res.ok) {
-        router.push("/login");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [state, action, isPending] = useActionState(createUser, initialState);
 
   return (
     <form
-      action={submitHandler}
+      action={action}
       className=" flex flex-col gap-4 mx-auto  px-6 py-8  shadow-md rounded-md border border-gray-300"
     >
       <h1 className="text-2xl font-bold font-serif text-center mb-2">
@@ -68,8 +53,8 @@ const Signin = () => {
         placeholder="Enter your password"
         labelPlacement="outside"
       />
-
-      <Button color="primary" type="submit" radius="sm" isLoading={pending}>
+      {state?.message && <p className="text-rose-400">{state.message}</p>}
+      <Button color="primary" type="submit" radius="sm" isLoading={isPending}>
         Sign Up
       </Button>
       <Link
