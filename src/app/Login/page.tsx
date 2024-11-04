@@ -3,7 +3,9 @@
 import { initialState } from "@/components/Signup";
 import { Input, Button } from "@nextui-org/react";
 import { signIn } from "next-auth/react";
+
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 import React, { useActionState } from "react";
 import { useFormStatus } from "react-dom";
@@ -14,6 +16,7 @@ const submitHandler: any = async (
 ) => {
   const email = data.get("email") as string;
   const password = data.get("password") as string;
+  let redirectPath: string | null = null;
 
   try {
     const res = await signIn("credentials", {
@@ -21,12 +24,14 @@ const submitHandler: any = async (
       password,
       redirect: false,
     });
-
+    redirectPath = "/";
     return res;
   } catch (error) {
     console.log(error);
 
     return { message: "Failed to login." };
+  } finally {
+    if (redirectPath) redirect(redirectPath);
   }
 };
 const page = () => {

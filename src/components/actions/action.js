@@ -24,8 +24,10 @@ export const createUser = async (preState, data) => {
   const parseData = schema.safeParse({ name, email, password });
 
   if (!parseData.success) {
-    return { message: "Failed to create todo" };
+    return { message: "Failed to create user" };
   }
+
+  let redirectPath;
 
   try {
     const res = await fetch(`${process.env.URL}/api/register`, {
@@ -39,14 +41,14 @@ export const createUser = async (preState, data) => {
         password: parseData.data.password,
       }),
     });
-    revalidatePath("/");
+    redirectPath = "/login";
   } catch (error) {
     console.log(error);
     return {
       message: "Failed to create user.",
     };
   } finally {
-    redirect("/");
+    if (redirectPath) redirect(redirectPath);
   }
 };
 
