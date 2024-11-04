@@ -28,7 +28,7 @@ export const createUser = async (preState, data) => {
   }
 
   try {
-    const res = await fetch("http://localhost:3000/api/register", {
+    const res = await fetch(`${process.env.URL}/api/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,14 +40,13 @@ export const createUser = async (preState, data) => {
       }),
     });
     revalidatePath("/");
-    redirect("/");
-
-    return { message: "Created user" };
   } catch (error) {
     console.log(error);
     return {
       message: "Failed to create user.",
     };
+  } finally {
+    redirect("/");
   }
 };
 
