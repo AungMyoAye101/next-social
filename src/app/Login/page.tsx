@@ -7,8 +7,9 @@ import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import React, { useActionState } from "react";
+import React, { useActionState, useState } from "react";
 import { useFormStatus } from "react-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
 const submitHandler: any = async (
   prevState: { message: string },
@@ -39,6 +40,7 @@ const page = () => {
     submitHandler,
     initialState
   );
+  const [show, setShow] = useState(false);
 
   return (
     <section>
@@ -62,13 +64,26 @@ const page = () => {
         />
 
         <Input
-          type="password"
+          type={show ? "text" : "password"}
           label="Password"
           name="password"
           radius="sm"
           variant="faded"
           placeholder="Enter your password"
           labelPlacement="outside"
+          endContent={
+            show ? (
+              <FaEye
+                className="relative z-10 cursor-pointer text-xl"
+                onClick={() => setShow((pre) => !pre)}
+              />
+            ) : (
+              <FaEyeSlash
+                className="relative z-10 cursor-pointer text-xl"
+                onClick={() => setShow((pre) => !pre)}
+              />
+            )
+          }
         />
         {state.message && <p>{state.message}</p>}
 
