@@ -1,6 +1,6 @@
 "use client";
 
-import { createUser } from "./actions/action";
+import { createUser } from "../actions/action";
 import { Button, Input } from "@nextui-org/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
