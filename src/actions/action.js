@@ -72,3 +72,20 @@ export const getUser = async () => {
   }
   return user;
 };
+
+export const submitPost = async (formData) => {
+  const post = formData.get("post");
+  const image = formData.get("image");
+  if (post && post.length < 3) return;
+
+  try {
+    connectToDb();
+    await Post.create({
+      author: session?.user?.id,
+      post,
+      image,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
