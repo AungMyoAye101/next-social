@@ -13,7 +13,12 @@ import { FaRegComment, FaRegThumbsUp, FaThumbsUp } from "react-icons/fa";
 
 import { PiShareFatThin } from "react-icons/pi";
 
-export default function Post() {
+interface PostProp {
+  post: string;
+  image?: string;
+}
+
+export default function Post({ post, image }: PostProp) {
   const [isFollowed, setIsFollowed] = React.useState(false);
 
   return (
@@ -51,12 +56,8 @@ export default function Post() {
         </Button>
       </CardHeader>
       <CardBody>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse
-          perspiciatis dignissimos repudiandae placeat soluta commodi delectus
-          suscipit. Alias dolores similique optio ratione, minus doloribus
-          asperiores ipsum. Minima qui excepturi iusto!
-        </p>
+        <p>{post}</p>
+        {image && <p>{image}</p>}
       </CardBody>
 
       <CardFooter className="gap-3">
