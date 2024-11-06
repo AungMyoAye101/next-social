@@ -73,17 +73,18 @@ export const getUser = async () => {
 };
 
 export const submitPost = async (formData) => {
-  const user = getUser();
+  const session = await auth();
+
   const post = formData.get("post");
   const image = formData.get("image");
   if (post && post.length < 3) return;
 
   try {
     connectToDb();
-    await Post.create({
-      author: user._id,
-      post,
-      image,
+    const res = await fetch(`${process.env.URL}/api/post/new`, {
+      method: "POST",
+
+      body: JSON.stringify({ userId: session.user.id, post, image }),
     });
   } catch (error) {
     console.log(error);
