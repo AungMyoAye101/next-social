@@ -1,10 +1,9 @@
 "use client";
 
 import { submitPost } from "@/actions/action";
-import { connectToDb } from "@/lib/connectToDb";
-import Post from "@/lib/model/Post";
+
 import { Button, Input } from "@nextui-org/react";
-import { useSession } from "next-auth/react";
+
 import Image from "next/image";
 import React from "react";
 import { FaImage } from "react-icons/fa6";
@@ -37,7 +36,9 @@ const UploadPost = () => {
             >
               <FaImage />
             </Button>
-            <Button color="primary">Upload</Button>
+            <Button color="primary" type="submit">
+              Upload
+            </Button>
           </div>
         </form>
       </main>

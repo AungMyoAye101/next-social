@@ -2,8 +2,9 @@
 
 import { auth } from "@/auth";
 import { connectToDb } from "@/lib/connectToDb";
+import Post from "@/lib/model/Post";
 import { User } from "@/lib/model/User";
-import { useSession } from "next-auth/react";
+
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -74,6 +75,7 @@ export const getUser = async () => {
 };
 
 export const submitPost = async (formData) => {
+  const user = getUser();
   const post = formData.get("post");
   const image = formData.get("image");
   if (post && post.length < 3) return;
@@ -81,7 +83,7 @@ export const submitPost = async (formData) => {
   try {
     connectToDb();
     await Post.create({
-      author: session?.user?.id,
+      author: user._id,
       post,
       image,
     });
