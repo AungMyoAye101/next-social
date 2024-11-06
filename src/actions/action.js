@@ -4,10 +4,8 @@ import { auth } from "@/auth";
 import { connectToDb } from "@/lib/connectToDb";
 import Post from "@/lib/model/Post";
 import { User } from "@/lib/model/User";
-
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
