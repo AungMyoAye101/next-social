@@ -73,8 +73,6 @@ export const getUser = async () => {
 };
 
 export const submitPost = async (formData) => {
-  const user = getUser();
-
   const post = formData.get("post");
   const image = formData.get("image");
   if (post && post.length < 3) return;
@@ -83,8 +81,8 @@ export const submitPost = async (formData) => {
     connectToDb();
     const res = await fetch(`${process.env.URL}/api/post/new`, {
       method: "POST",
-
-      body: JSON.stringify({ userId: user._id, post, image }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ post, image }),
     });
   } catch (error) {
     console.log(error);

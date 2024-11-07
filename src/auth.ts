@@ -23,7 +23,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         try {
           await connectToDb();
           const newuser = await User.findOne({ email: credentials.email });
-          console.log(newuser);
+
           if (newuser) {
             const isMatch = await bcrypt.compare(
               credentials.password,
