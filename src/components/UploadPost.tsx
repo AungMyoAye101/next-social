@@ -1,8 +1,10 @@
 "use client";
 
 import { submitPost } from "@/actions/action";
+import { connectToDb } from "@/lib/connectToDb";
 
 import { Button, Input } from "@nextui-org/react";
+import { useSession } from "next-auth/react";
 
 import Image from "next/image";
 import React from "react";

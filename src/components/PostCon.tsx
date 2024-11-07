@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import Post from "@/components/Post";
+import { connectToDb } from "@/lib/connectToDb";
+import { useSession } from "next-auth/react";
 
 const PostCon = () => {
   const [postData, setPostData] = useState([]);

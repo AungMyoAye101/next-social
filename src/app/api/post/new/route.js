@@ -3,7 +3,7 @@ import Post from "@/lib/model/Post";
 
 export const POST = async (req) => {
   const { userId, post, image } = await req.json();
-
+  console.log(userId, post);
   try {
     await connectToDb();
     const newPost = new Post({

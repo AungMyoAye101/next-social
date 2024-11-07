@@ -73,7 +73,7 @@ export const getUser = async () => {
 };
 
 export const submitPost = async (formData) => {
-  const session = await auth();
+  const user = getUser();
 
   const post = formData.get("post");
   const image = formData.get("image");
@@ -84,7 +84,7 @@ export const submitPost = async (formData) => {
     const res = await fetch(`${process.env.URL}/api/post/new`, {
       method: "POST",
 
-      body: JSON.stringify({ userId: session.user.id, post, image }),
+      body: JSON.stringify({ userId: user._id, post, image }),
     });
   } catch (error) {
     console.log(error);
