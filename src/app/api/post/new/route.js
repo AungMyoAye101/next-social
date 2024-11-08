@@ -2,18 +2,15 @@ import { connectToDb } from "@/lib/connectToDb";
 import Post from "@/lib/model/Post";
 
 export const POST = async (req) => {
-  const { post, image } = await req.json();
-
-  console.log(`routes ${(session.user, post)}`);
+  const { userId, title } = await req.json();
+  console.log(userId, title);
   try {
     await connectToDb();
-    const newPost = new Post({
-      author: session.user.id,
-      post,
+    await Post.create({
+      author: userId,
+      title,
       image,
     });
-
-    await newPost.save();
     return new Response(JSON.stringify(newPost), {
       status: 201,
     });

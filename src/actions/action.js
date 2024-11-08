@@ -64,7 +64,6 @@ export const getUser = async () => {
       };
       delete user.__v;
     }
-    console.log(user);
   } catch (error) {
     console.error("Unable to fetch User:", error);
     return new NextResponse("Unable to fetch User", { status: 500 });
@@ -72,19 +71,19 @@ export const getUser = async () => {
   return user;
 };
 
-export const submitPost = async (formData) => {
-  const post = formData.get("post");
-  const image = formData.get("image");
-  if (post && post.length < 3) return;
+// export const submitPost = async (formData) => {
+//   const post = formData.get("post");
+//   const image = formData.get("image");
+//   if (post && post.length < 3) return;
 
-  try {
-    connectToDb();
-    const res = await fetch(`${process.env.URL}/api/post/new`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ post, image }),
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
+//   try {
+//     connectToDb();
+//     const res = await fetch(`${process.env.URL}/api/post/new`, {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({ post, image }),
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };

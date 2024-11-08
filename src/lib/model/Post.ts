@@ -1,12 +1,11 @@
 import mongoose, { model, models, Schema } from "mongoose";
 
-const postSchmea = new mongoose.Schema({
+const postSchema = new mongoose.Schema({
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    require: true,
   },
-  post: {
+  title: {
     type: String,
     require: [true, "post is required"],
   },
@@ -15,6 +14,6 @@ const postSchmea = new mongoose.Schema({
   },
 });
 
-const Post = models.Post || model("Post", postSchmea);
+const Post = models.Post || model("Post", postSchema);
 
 export default Post;

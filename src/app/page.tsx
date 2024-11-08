@@ -4,6 +4,7 @@ import Post from "@/components/Post";
 import PostCon from "@/components/PostCon";
 import SideMenu from "@/components/SideMenu";
 import SignOut from "@/components/SignOut";
+import UploadPost from "@/components/UploadPost";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -14,8 +15,8 @@ export default async function Home() {
     redirect("/login");
   }
   return (
-    <>
+    <section>
       <PostCon />
-    </>
+    </section>
   );
 }
