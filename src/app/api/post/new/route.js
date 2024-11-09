@@ -7,7 +7,7 @@ export const POST = async (req) => {
   try {
     await connectToDb();
     await Post.create({
-      author: userId,
+      author,
       title,
       image,
     });

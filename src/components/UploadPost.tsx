@@ -1,36 +1,13 @@
-"use client";
-
-import { getUser } from "@/actions/action";
+import { createPost } from "@/actions/action";
 import { connectToDb } from "@/lib/connectToDb";
-
+import { User } from "@/lib/model/User";
 import { Button, Input } from "@nextui-org/react";
-import { useSession } from "next-auth/react";
 
 import Image from "next/image";
-import React, { useState } from "react";
+
 import { FaImage } from "react-icons/fa6";
 
 const UploadPost = () => {
-  const { data: session } = useSession();
-  const user = getUser();
-  const createPost = async (formData: FormData) => {
-    const title = formData.get("title");
-    console.log(user);
-    try {
-      if (session?.user) {
-        const res = await fetch("/api/post/new", {
-          method: "POST",
-          body: JSON.stringify({
-            userId: session.user.name,
-            title,
-          }),
-        });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <section className="p-4 rounded-md shadow-md border">
       <main className="flex gap-2">

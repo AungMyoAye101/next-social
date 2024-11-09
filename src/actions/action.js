@@ -87,3 +87,20 @@ export const getUser = async () => {
 //     console.log(error);
 //   }
 // };
+
+export const createPost = async (formData) => {
+  const session = await auth();
+  const title = formData.get("title");
+  try {
+    await connectToDb();
+    const user = await User.find({ email: session.user.email });
+    const res = await fetch(`${process.env.URL}/api/post/new`, {
+      method: "POST",
+      body: JSON.stringify({
+        userId: user._id,
+        title,
+      }),
+    });
+    console.log(res);
+  } catch (error) {}
+};
