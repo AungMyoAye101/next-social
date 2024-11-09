@@ -71,23 +71,6 @@ export const getUser = async () => {
   return user;
 };
 
-// export const submitPost = async (formData) => {
-//   const post = formData.get("post");
-//   const image = formData.get("image");
-//   if (post && post.length < 3) return;
-
-//   try {
-//     connectToDb();
-//     const res = await fetch(`${process.env.URL}/api/post/new`, {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({ post, image }),
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
 export const createPost = async (formData) => {
   const session = await auth();
   const title = formData.get("title");
