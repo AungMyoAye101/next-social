@@ -9,13 +9,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
   providers: [
     Credentials({
-      async authorize(credentials) {
-        const parsedCredentials = z
-          .object({
-            email: z.string().email(),
-            password: z.string().min(8),
-          })
-          .safeParse(credentials);
+      credentials: {
+        username: { label: "Username", type: "text" },
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+      },
+      authorize: async (credentials) => {
+        const email = "zue@gmail.com";
+        const password = "123456";
+
+        if (credentials.email === email && credentials.password === password) {
+          return { email, password };
+        }
       },
     }),
   ],
