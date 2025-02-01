@@ -6,3 +6,23 @@
     @apply py-1.5 px-4 font-light font-serif rounded-md focus:outline-none w-full;
   }
 }
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #9e52eb #fff;
+}
+.coustom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #9e52eb #fff;
+}
+.coustom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.coustom-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: tomato;
+  border-radius: 20px;
+  /* Chrome, Safari, and Opera */
+}
