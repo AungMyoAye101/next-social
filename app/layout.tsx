@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import NavBar from "@/components/NavBar";
+import LeftSideBar from "@/components/LeftSideBar";
+import RightSideBar from "@/components/RightSideBar";
 
 export const metadata: Metadata = {
   title: "Social App",
@@ -17,7 +19,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <NavBar />
-        {children}
+        <main className="flex gap-4 ">
+          <LeftSideBar />
+          {children}
+          <RightSideBar />
+        </main>
       </body>
     </html>
   );
