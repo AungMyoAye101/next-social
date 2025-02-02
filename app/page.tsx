@@ -2,7 +2,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <section className="flex-1  pt-20 px-4 pb-4 min-h-screen overflow-hidden overflow-y-scroll coustom-scrollbar">
+    <section className="flex-1  page_padding coustom-scrollbar">
       <div className="h-screen flex justify-center items-center bg-green-200">
         <h1 className="text-6xl font-bold font-serif text-center">Hello </h1>
         <p className="text-2xl ">You are on home page</p>

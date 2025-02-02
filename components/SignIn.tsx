@@ -4,7 +4,7 @@ export function SignIn() {
   return (
     <form
       action=""
-      className="flex flex-col gap-4 py-8 px-8 bg-gray-200 rounded-md max-w-80  mx-auto mt-14  "
+      className="flex flex-col gap-4 py-8 px-8 bg-purple-400 rounded-lg shadow-md dark:shadow-none max-w-80  mx-auto mt-14  "
     >
       <h2 className="font-serif font-semibold font-2xl text-center">Login</h2>
       <div className="">
@@ -23,9 +23,9 @@ export function SignIn() {
           className="input_style"
         />
       </div>
-      <div className="flex justify-between ">
+      <div className="flex justify-between items-center ">
         <p className="text-xs">Don't have an account ?</p>
-        <Link href={"/signup"} className="text-blue-500">
+        <Link href={"/signup"} className="hover:text-blue-500">
           Sign up
         </Link>
       </div>
