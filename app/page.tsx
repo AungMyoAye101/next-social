@@ -1,15 +1,16 @@
+import Post from "@/components/Post";
 import React from "react";
 
 const page = () => {
   return (
-    <section className="flex-1  page_padding coustom-scrollbar">
-      <div className="h-screen flex justify-center items-center bg-green-200">
-        <h1 className="text-6xl font-bold font-serif text-center">Hello </h1>
-        <p className="text-2xl ">You are on home page</p>
+    <section className="flex-1  page_padding coustom-scrollbar ">
+      <div className="flex flex-col gap-4  items-center">
+        {Array(10)
+          .fill(null)
+          .map((_, i) => (
+            <Post key={i} />
+          ))}
       </div>
-      <div className="h-screen bg-red-200"></div>
-      <div className="h-screen bg-yellow-200"></div>
-      <div className="h-screen bg-blue-200"></div>
     </section>
   );
 };

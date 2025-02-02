@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-neutral-200 dark:bg-neutral-800">
         <NavBar />
         <main className="flex gap-4 ">
           <LeftSideBar />
