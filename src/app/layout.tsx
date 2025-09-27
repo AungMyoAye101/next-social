@@ -1,10 +1,6 @@
 
 import type { Metadata } from "next";
 import "./globals.css";
-import Providers from "./providers";
-
-
-
 
 export const metadata: Metadata = {
   title: "Social APP",
@@ -20,9 +16,12 @@ export default function RootLayout({
     <html lang="en">
       <body
       >
-        <Providers>
+
+        <div className="max-w-7xl mx-auto bg-blue-300">
+
+
           {children}
-        </Providers>
+        </div>
       </body>
     </html>
   );
