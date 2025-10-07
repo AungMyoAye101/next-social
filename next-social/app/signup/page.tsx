@@ -6,7 +6,7 @@ import { Input } from '@heroui/input'
 import { Form } from '@heroui/form'
 const page = () => {
 
-    const [submitted, setSubmitted] = React.useState(null);
+    const [submitted, setSubmitted] = React.useState<any>(null);
 
     const onSubmit = (e: any) => {
         e.preventDefault();
@@ -16,7 +16,7 @@ const page = () => {
         setSubmitted(data);
     };
     return (
-        <Form className="w-full max-w-xs" onSubmit={onSubmit}>
+        <Form className="w-full max-w-xs bg-primary-50" onSubmit={onSubmit}>
             <Input
                 isRequired
                 errorMessage="Please enter a valid email"
