@@ -36,7 +36,7 @@ const Signup = () => {
         reset()
     }
     return (
-        <form className="w-full max-w-xs bg-white/90 p-6 rounded-md shadow " onSubmit={handleSubmit(onSubmit)}>
+        <form className="w-full max-w-xs bg-white/90 p-6 rounded-md shadow flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
             <Input
                 {
                 ...register("name")

@@ -7,6 +7,7 @@ import { LoginFormInputs, loginSchema } from '@/validation/login-schema';
 import { Button } from '@heroui/button';
 import { axiosInstance } from '@/config/axios';
 import { Input } from '@heroui/input';
+import { addToast } from '@heroui/toast';
 
 export function LoginForm() {
 
@@ -17,16 +18,28 @@ export function LoginForm() {
         try {
             const res = await axiosInstance.post('/api/v1/auth/register', { data })
             const result = res.data
-            console.log(result)
+            addToast({
+                title: 'Login Success',
+                description: result.message,
+                color: "success"
+            })
 
         } catch (error) {
             console.log(error)
+            if (error instanceof Error) {
+                addToast({
+                    title: 'Login Failed',
+                    description: error.message,
+                    color: "danger"
+                })
+
+            }
         }
         reset()
     }
 
     return (
-        <form className="w-full max-w-xs bg-white/90 p-6 rounded-md shadow " onSubmit={handleSubmit(onSubmit)}>
+        <form className="w-full max-w-xs bg-white/90 p-6 rounded-md shadow  flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
 
             <Input
                 {
