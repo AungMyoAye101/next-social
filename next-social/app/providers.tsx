@@ -19,13 +19,17 @@ declare module "@react-types/shared" {
     >;
   }
 }
+import { ToastProvider } from "@heroui/toast";
 
 export function Providers({ children, themeProps }: ProvidersProps) {
   const router = useRouter();
 
   return (
     <HeroUIProvider navigate={router.push}>
-      <NextThemesProvider attribute={'class'} defaultTheme="light">{children}</NextThemesProvider>
+      <NextThemesProvider attribute={'class'} defaultTheme="light">
+        <ToastProvider />
+        {children}
+      </NextThemesProvider>
     </HeroUIProvider>
   );
 }

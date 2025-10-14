@@ -5,7 +5,9 @@ import { Input } from '@heroui/input'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { signupFormInputs, signupSchema } from '@/validation/signup-schema'
-const base = 'http://localhost:4444'
+import { axiosInstance } from '@/config/axios';
+import { addToast } from '@heroui/toast';
+
 
 const Signup = () => {
     const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm({
@@ -13,21 +15,23 @@ const Signup = () => {
     })
     const onSubmit = async (data: signupFormInputs) => {
         try {
-            const res = await fetch(base + '/api/v1/auth/register',
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-type": "application/json"
-                    },
-                    body: JSON.stringify(data),
-                    credentials: "include"
-
-                })
-            const response = await res.json()
-            console.log(response)
-
+            const res = await axiosInstance.post('/api/v1/auth/register', data)
+            const result = res.data
+            addToast({
+                title: "Signup successfull",
+                description: result.message,
+                color: 'success'
+            });
         } catch (error) {
             console.log(error)
+            if (error instanceof Error) {
+
+                addToast({
+                    title: "Signup error",
+                    description: error.message,
+                    color: 'danger'
+                });
+            }
         }
         reset()
     }
