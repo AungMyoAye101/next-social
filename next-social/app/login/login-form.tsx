@@ -5,9 +5,9 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginFormInputs, loginSchema } from '@/validation/login-schema';
 import { Button } from '@heroui/button';
-import { axiosInstance } from '@/config/axios';
 import { Input } from '@heroui/input';
 import { addToast } from '@heroui/toast';
+import axiosInstance, { base } from '@/config/axios';
 
 export function LoginForm() {
 
@@ -15,9 +15,21 @@ export function LoginForm() {
         resolver: zodResolver(loginSchema)
     })
     const onSubmit = async (data: LoginFormInputs) => {
+        console.log(data)
         try {
-            const res = await axiosInstance.post('/api/v1/auth/register', { data })
-            const result = res.data
+            const res = await fetch(base + '/api/v1/auth/login', {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify(data),
+                credentials: "include"
+            })
+
+
+
+            const result = await res.json()
+            console.log(result)
             addToast({
                 title: 'Login Success',
                 description: result.message,

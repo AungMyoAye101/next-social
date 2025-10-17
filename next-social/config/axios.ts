@@ -1,5 +1,6 @@
 
 import axios from "axios"
+import Cookies from "js-cookie"
 export const base = process.env.NEXT_PUBLIC_BASE_URL;
 
 const axiosInstance = axios.create({
@@ -7,11 +8,15 @@ const axiosInstance = axios.create({
     headers: { "Content-Type": "application/json" },
     withCredentials: true
 });
+const axiosRefresh = axios.create({
+    baseURL: base,
+    withCredentials: true
+});
 
-//Check token and set bearer token to headers
+
 axiosInstance.interceptors.request.use(
     (config) => {
-        const token = "aaaaa";
+        const token = Cookies.get("access_token");
         config.headers.Authorization = `Bearer ${token}`
         return config;
     },
@@ -23,27 +28,31 @@ axiosInstance.interceptors.response.use(
     async (error) => {
         const originalRequest = error.config;
         console.log(originalRequest, "Original request");
-        const status = error.response.status;
-        console.log(status);
+        const status = error.response?.status;
+        console.log("status", status);
+        if (originalRequest?.url?.includes("/auth/refresh")) {
+            return Promise.reject(error);
+        }
 
         if (status === 401 && !originalRequest._retry) {
             originalRequest._retry = true;
 
             try {
-                const { data } = await axiosInstance.post('/auth/refresh')
-                const newAccessToken = data.token;
+                const res = await axiosRefresh.post('/api/v1/auth/refresh')
+                console.log(res)
+                const newAccessToken = res.data.result.token;
+                if (newAccessToken) {
 
-                originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+                    originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+                }
                 return axiosInstance(originalRequest)
             } catch (error) {
-                console.log(error)
+                console.log("Refresh token ", error)
                 return Promise.reject(error)
             }
-
-
         }
-    }
-)
+        return Promise.reject(error)
+    })
 
 
 export default axiosInstance;

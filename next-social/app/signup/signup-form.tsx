@@ -5,7 +5,7 @@ import { Input } from '@heroui/input'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { signupFormInputs, signupSchema } from '@/validation/signup-schema'
-import { axiosInstance } from '@/config/axios';
+import axiosInstance from '@/config/axios';
 import { addToast } from '@heroui/toast';
 
 

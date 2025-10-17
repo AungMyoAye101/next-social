@@ -17,7 +17,7 @@ const getPosts = async () => {
 
 const Post = async () => {
     const data = await getPosts()
-    console.log(data)
+
     return (
         <div>
             <PostCard />
