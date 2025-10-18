@@ -8,6 +8,7 @@ import { Button } from '@heroui/button';
 import { Input } from '@heroui/input';
 import { addToast } from '@heroui/toast';
 import axiosInstance, { base } from '@/config/axios';
+import Cookies from 'js-cookie';
 
 export function LoginForm() {
 
@@ -17,22 +18,15 @@ export function LoginForm() {
     const onSubmit = async (data: LoginFormInputs) => {
         console.log(data)
         try {
-            const res = await fetch(base + '/api/v1/auth/login', {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json"
-                },
-                body: JSON.stringify(data),
-                credentials: "include"
-            })
+            const res = await axiosInstance.post('/api/v1/auth/login', data)
+            
+         
+            Cookies.set("access_token", res.data.result.token)
 
-
-
-            const result = await res.json()
-            console.log(result)
+            console.log(res)
             addToast({
                 title: 'Login Success',
-                description: result.message,
+                description: res.data.message,
                 color: "success"
             })
 

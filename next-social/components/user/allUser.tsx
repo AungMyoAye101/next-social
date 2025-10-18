@@ -1,23 +1,33 @@
-import axiosInstance from '@/config/axios'
+
+import { axiosInstance } from '@/config/axios';
+import axios from 'axios';
 import React from 'react'
 
 const getAllUsers = async () => {
-    const { data } = await axiosInstance.get('/api/v1/user/allusers')
-    return data;
+    try {
+        const res = await axios.get('http://localhost:4444/api/v1/user/allusers');
+        const users = res.data.users;
+        console.log(users)
+        return users;
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 const AllUser = async () => {
-    const users = await getAllUsers();
+const users = await getAllUsers();
     console.log(users)
     return (
         <div>
-            {
-                JSON.stringify(
-                    users[0]
-                )
-            }
+            {users.map((user: any) => (
+                <div key={user._id}>
+                    <h1>{user.name}</h1>
+                </div>
+            ))}
         </div>
     )
 }
+
+
 
 export default AllUser
